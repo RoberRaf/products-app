@@ -1,0 +1,32 @@
+<div class="card">
+  <img
+    [src]="product!.images[0]"
+    class="card-img-top hover"
+    style="max-height: 300px"
+    alt="mainImage"
+    [routerLink]="['details', product!.id]"
+  />
+  @if(product?.stock??0 > 0) {
+  <span
+    class="badge my-1 py-1 rounded-pill text-bg-success position-absolute top-0 start-0 ms-3"
+    >In stock</span
+  >
+  }@else {
+  <span
+    class="badge my-1 py-1 rounded-pill text-bg-danger position-absolute top-0 start-0 ms-3"
+    >Out of stock</span
+  >
+  }
+  <div class="card-body">
+    <div class="card-title row justify-content-end">
+      <h6 class="col">{{ product?.title }}</h6>
+      <h6 class="col-auto">
+        {{ [product!.price, product!.discountPercentage] | discount }}EGP
+      </h6>
+    </div>
+    <p class="card-text text-secondary">{{ product?.description }}</p>
+    <app-star-rating [rating]="product!.rating"></app-star-rating>
+    <br />
+    <a class="btn btn-outline-secondary" (click)="addCart()">Add to Card</a>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+  <h1>Cart</h1>
+  @if(cartItems.length === 0) {
+  <h1 class="text-center mt-5 text-secondary">Cart is empty</h1>
+  } @else {
+
+  <table class="table table-light table-striped align-items-center">
+    <thead>
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Remove</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of cartItems; track item.id) {
+      <tr>
+        <td>
+          <div class="row align-items-center align-items-center">
+            <img
+              class="col-auto"
+              [src]="item.images[0]"
+              style="height: 80px; width: 80px"
+              alt=""
+            />
+            <div class="col-auto desc">
+              <h6>{{ item.title }}</h6>
+              <p>Product Code : {{ item.id }}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="text-center">
+            <button
+              class="btn btn-success mx-2"
+              [disabled]="item.quantity === item.stock ? true : false"
+              (click)="adjust(true, item.id)"
+            >
+              +
+            </button>
+            {{ item.quantity }}
+            <button
+              class="btn btn-secondary mx-2"
+              [disabled]="item.quantity === 1 ? true : false"
+              (click)="adjust(false, item.id)"
+            >
+              -
+            </button>
+            <br />
+            @if (item.quantity === item.stock) {
+            <small class="text-danger">Max stock reached</small>
+            }@else if (item.quantity === 1) {
+            <small class="text-secondary">Min amount reached</small>
+            }
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-danger mx-2" (click)="remove(item.id)">
+            X
+          </button>
+        </td>
+        <td>{{ item.totlaPrice.toFixed(2) }} EGP</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</div>

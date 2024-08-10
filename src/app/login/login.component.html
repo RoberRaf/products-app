@@ -1,0 +1,60 @@
+<div class="d-flex">
+  <div
+    class="d-block border border-secondary rounded-3 text-sm-start p-5 m-auto"
+  >
+    <h3 class="text-center mb-4">Login</h3>
+    <form #form="ngForm" (ngSubmit)="handleSubmit(form)">
+      <div class="mb-4">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+          name="email"
+          ngModel
+          #email="ngModel"
+          required
+          email
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+        @if(email.invalid && email.touched){
+        <div class="text-danger mt-2">
+          @if (email.hasError('required')) { Email is required }@else if
+          (email.hasError("email")) { Email is invalid }
+        </div>
+        }
+      </div>
+      <div class="mb-5">
+        <label for="password" class="form-label">Password</label>
+        <input
+          name="password"
+          ngModel
+          required
+          minlength="6"
+          #password="ngModel"
+          type="password"
+          class="form-control"
+          id="password"
+        />
+        @if(password.invalid && password.touched){
+        <div class="text-danger mt-2">
+          @if (password.hasError('required')) { Field is required }@else if
+          (password.hasError("minlength")) { min legnth is 6 characters }
+        </div>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+  </div>
+</div>
+<div class="d-flex mt-4">
+  <h4 class="m-auto">
+    Don't have account?
+    <a
+      [routerLink]="['../register']"
+      class="link-body-emphasis link-underline-opacity-0-hover"
+      >Register</a
+    >
+  </h4>
+</div>

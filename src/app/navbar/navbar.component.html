@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand text-danger"
+      routerLink="/"
+      routerLinkActive="active fw-bolder text-success"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Products App</a
+    >
+    <div class="">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="register"
+            routerLinkActive="active fw-bolder text-success  "
+            >Register</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="login"
+            routerLinkActive="active fw-bolder text-success "
+            >Login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="cart"
+            routerLinkActive="active fw-bolder text-success "
+            ><i class="fa-solid fa-cart-shopping"></i>
+            @if(cartCounter !== 0){
+            <span class="badge text-bg-warning my-1 py-1 rounded-pill py-1">
+              {{ cartCounter }}
+            </span>
+            }
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- 
+<div class="row justify-content-between py-4">
+
+    <h5 class="col-auto text-success fw-bold">Products App</h5>
+    <div class="navbar-nav">
+         <a class="nav-link" routerLink="register">Register</a>
+         <a class="nav-link" routerLink="login">Login</a>
+         <a class="nav-link" routerLink="cart">Cart</a>
+    </div>
+
+</div>  -->

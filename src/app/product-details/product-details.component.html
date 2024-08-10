@@ -1,0 +1,60 @@
+@if (isLoading) {
+<h1 class="text-center mt-5 text-secondary">Loading ....</h1>
+}@else {
+
+<div class="row mt-4 justify-content-evenly">
+  <div class="col-6 rounded">
+    <div class="text-center">
+      <img
+        [src]="bigImage"
+        class="bg-body-secondary rounded mb-3"
+        style="max-height: 500px"
+        alt=""
+      />
+    </div>
+    <div class="row">
+      @for (item of product.images; track $index) {
+      <img
+        [src]="item"
+        class="col-auto bg-body-secondary rounded small-image"
+        alt=""
+        (click)="onselectImage(item)"
+      />
+      }
+    </div>
+  </div>
+  <div class="col-5">
+    <h2>{{ product.title }}</h2>
+    <h6>{{ product.description }}</h6>
+    <h6 class="fw-bolder text-warning">Rating: {{ product.rating }}</h6>
+    <h2 class="mt-4">
+      {{ [product.price, product.discountPercentage] | discount }} EGP or
+      {{ (product.price / 12).toFixed(2) }}EGP/Month
+    </h2>
+    <h5 class="mt-4 text-secondary text-decoration-line-through">
+      {{ product.price }} EGP
+    </h5>
+    <app-star-rating [rating]="product.rating"></app-star-rating>
+    @if(product.stock > 0) {
+    <span class="badge my-1 py-1 rounded-pill text-bg-success py-2 px-4"
+      >In stock</span
+    >
+    }@else {
+    <span class="badge my-1 py-1 rounded-pill text-bg-danger py-2 px-4"
+      >Out of stock</span
+    >
+    }
+    <div class="mt-5 row justify-content-between">
+      <button class="col-auto btn btn-outline-secondary rounded-5 px-5">
+        Buy Now
+      </button>
+      <button
+        class="col-auto btn btn-outline-secondary rounded-5 px-5"
+        (click)="addCart()"
+      >
+        Add To Cart
+      </button>
+    </div>
+  </div>
+</div>
+}

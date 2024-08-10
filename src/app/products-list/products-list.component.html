@@ -1,0 +1,14 @@
+<div class="container py-5">
+  @if(isLoading){
+  <h1 class="text-center mt-5 text-secondary">Loading Data ...</h1>
+  }@else {
+  <h6>Welcome to our shopping website, start browsing ...</h6>
+  <div class="row justify-content-start pt-3">
+    @for (item of products; track item.id) {
+    <div class="col-4 my-3 hover">
+      <app-product-card [product]="item"></app-product-card>
+    </div>
+    }
+  </div>
+  }
+</div>
